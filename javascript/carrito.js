@@ -71,6 +71,22 @@ function actualizarBotonesEliminar() {
 }
 
 function eliminarDelCarrito(e) {
+    Toastify({
+        text: "Te arrepentiste bro",
+        duration: 3000,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+        background: "linear-gradient(to right, #008f00, #007400)",
+        },
+        offset: {
+            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
     const idBoton = e.currentTarget.id;
     const index = geneticasEnCarrito.findIndex(genetica => genetica.id === idBoton);
 
@@ -83,9 +99,24 @@ function eliminarDelCarrito(e) {
 botonVaciar.addEventListener("click", vaciarCarrito);
 function vaciarCarrito() {
 
-    geneticasEnCarrito.length = 0;
-    localStorage.setItem("geneticas-en-carrito", JSON.stringify(geneticasEnCarrito));
-    cargarGeneticasEnCarrito();
+    Swal.fire({
+        title: 'Seguro?',
+        icon: 'question',
+        html:
+        'Se eliminaran estas geneticas de tu carrito.',
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText: 'Yea',
+        cancelButtonText: 'No...',
+    }).then((result) => {
+        if (result.isConfirmed) {    
+            geneticasEnCarrito.length = 0;
+            localStorage.setItem("geneticas-en-carrito", JSON.stringify(geneticasEnCarrito));
+            cargarGeneticasEnCarrito();
+        }
+    })
+
+
 }
 
 function actualizarTotal() {

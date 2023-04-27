@@ -1,67 +1,11 @@
+let geneticas = [];
 
-
-const geneticas = [
-    {
-        id: "nlf",
-        nombre: "Northern Lights Feminizada",
-        imagen: "./img/northern-lights-fem.jpg",
-        categoria: {
-            titulo: "Feminizadas",
-            id: "feminizadas"
-        },
-        precio: "10000",
-    },
-    {
-        id: "mdf",
-        nombre: "Moby Dick Feminizada",
-        imagen: "./img/moby-dick-fem.jpg",
-        categoria: {
-            titulo: "Feminizadas",
-            id: "feminizadas"
-        },
-        precio: 10000,
-    },
-    {
-        id: "gga",
-        nombre: "Gorilla Glue Auto",
-        imagen: "./img/gorilla-glue-auto.jpg",
-        categoria: {
-            titulo: "Autos",
-            id: "autos"
-        },
-        precio: 14000,
-    },
-    {
-        id: "lhf",
-        nombre: "Lemon Haze Feminizada",
-        imagen: "./img/lemon-haze-fem.jpg",
-        categoria: {
-            titulo: "Feminizadas",
-            id: "feminizadas"
-        },
-        precio: 8000,
-    },
-    {
-        id: "mpf",
-        nombre: "Mandarin Punch Feminizada",
-        imagen: "./img/mandarin-punch-fem.png",
-        categoria: {
-            titulo: "Feminizadas",
-            id: "feminizadas"
-        },
-        precio: 12000,
-    },
-    {
-        id: "cca",
-        nombre: "Choco Cookies Auto",
-        imagen: "./img/choco-cookies-auto.png",
-        categoria: {
-            titulo: "Autos",
-            id: "autos"
-        },
-        precio: 6000,
-    },
-]
+fetch("./javascript/geneticas.json")
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+        geneticas = datos;
+        cargarGeneticas(geneticas);
+    })
 
 const contenedorGeneticas = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -93,7 +37,7 @@ function cargarGeneticas(geneticasElegidas) {
     actualizarBotonesAgregar();
 }
 
-cargarGeneticas(geneticas);
+
 
 botonesCategorias.forEach(boton => {
     boton.addEventListener("click", (e) => {
@@ -135,6 +79,22 @@ if (geneticasEnCarritoLS) {
 }
 
 function agregarAlCarrito(e) {
+    Toastify({
+        text: "Genetica a la bolsa",
+        duration: 3000,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+        background: "linear-gradient(to right, #008f00, #007400)",
+        },
+        offset: {
+            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
 
     const idBoton = e.currentTarget.id;
     const geneticaAgregada = geneticas.find(genetica => genetica.id === idBoton);

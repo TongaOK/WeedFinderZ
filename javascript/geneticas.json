@@ -1,0 +1,62 @@
+[
+    {
+        "id": "nlf",
+        "nombre": "Northern Lights Feminizada",
+        "imagen": "./img/northern-lights-fem.jpg",
+        "categoria": {
+            "titulo": "Feminizadas",
+            "id": "feminizadas"
+        },
+        "precio": "10000"
+    },
+    {
+        "id": "mdf",
+        "nombre": "Moby Dick Feminizada",
+        "imagen": "./img/moby-dick-fem.jpg",
+        "categoria": {
+            "titulo": "Feminizadas",
+            "id": "feminizadas"
+        },
+        "precio": 10000
+    },
+    {
+        "id": "gga",
+        "nombre": "Gorilla Glue Auto",
+        "imagen": "./img/gorilla-glue-auto.jpg",
+        "categoria": {
+            "titulo": "Autos",
+            "id": "autos"
+        },
+        "precio": 14000
+    },
+    {
+        "id": "lhf",
+        "nombre": "Lemon Haze Feminizada",
+        "imagen": "./img/lemon-haze-fem.jpg",
+        "categoria": {
+            "titulo": "Feminizadas",
+            "id": "feminizadas"
+        },
+        "precio": 8000
+    },
+    {
+        "id": "mpf",
+        "nombre": "Mandarin Punch Feminizada",
+        "imagen": "./img/mandarin-punch-fem.png",
+        "categoria": {
+            "titulo": "Feminizadas",
+            "id": "feminizadas"
+        },
+        "precio": 12000
+    },
+    {
+        "id": "cca",
+        "nombre": "Choco Cookies Auto",
+        "imagen": "./img/choco-cookies-auto.png",
+        "categoria": {
+            "titulo": "Autos",
+            "id": "autos"
+        },
+        "precio": 6000
+    }
+]
