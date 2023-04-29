@@ -118,6 +118,8 @@ aside {
 .texto-footer {
     color: rgb(18, 223, 18);
     font-size: .85rem;
+    padding-left: .5rem;
+    padding-top: .1rem;
 }
 
 main {
@@ -269,6 +271,27 @@ main {
 
 .disabled {
     display: none;
+}
+
+.boton-frase {
+    background-color: white;
+    color: rgb(0, 143, 0);
+    border-color: transparent;
+    border-radius: .4rem;
+    text-transform: uppercase;
+    padding: .2rem;
+    cursor: pointer;
+    margin: .5rem;
+}
+
+.boton-frase:hover {
+    background-color: rgb(90, 18, 223);
+    color: white;
+}
+
+.texto-frase {
+    font-size: 16px;
+    padding: .5rem;
 }
 
 /*Fin Carrito*/

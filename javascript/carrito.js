@@ -90,7 +90,10 @@ function eliminarDelCarrito(e) {
     const idBoton = e.currentTarget.id;
     const index = geneticasEnCarrito.findIndex(genetica => genetica.id === idBoton);
 
-    geneticasEnCarrito.splice(index, 1);
+    geneticasEnCarrito = [
+        ...geneticasEnCarrito.slice(0, index),
+        ...geneticasEnCarrito.slice(index + 1)
+    ];
     cargarGeneticasEnCarrito();
 
     localStorage.setItem("geneticas-en-carrito", JSON.stringify(geneticasEnCarrito));
@@ -120,8 +123,8 @@ function vaciarCarrito() {
 }
 
 function actualizarTotal() {
-    const totalCalculado = geneticasEnCarrito.reduce((acc, genetica) => acc + (genetica.precio * genetica.cantidad), 0)
-    total.innerText = `$${totalCalculado}`;
+    const totalCalculado = geneticasEnCarrito.reduce((acc, genetica) => acc + (genetica.precio * genetica.cantidad), 0);
+    contenedorTotal.innerText = `$${totalCalculado}`;
 }
 
 botonComprar.addEventListener("click", comprarCarrito);

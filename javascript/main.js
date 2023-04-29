@@ -79,15 +79,23 @@ if (geneticasEnCarritoLS) {
 }
 
 function agregarAlCarrito(e) {
+    const idBoton = e.currentTarget.id;
+    const geneticaAgregada = geneticas.find(genetica => genetica.id === idBoton);
+
+    geneticaAgregada.cantidad = geneticasEnCarrito.some(genetica => genetica.id === idBoton) ? geneticasEnCarrito.find(genetica => genetica.id === idBoton).cantidad + 1 : 1;
+
+    geneticasEnCarrito = geneticasEnCarrito.filter(genetica => genetica.id !== idBoton);
+    geneticasEnCarrito.push(geneticaAgregada);
+
     Toastify({
-        text: "Genetica a la bolsa",
+        text: geneticasEnCarrito.find(genetica => genetica.id === idBoton).cantidad === 1 ? "Genetica a la bolsa" : "Cantidad actualizada en la bolsa",
         duration: 3000,
         close: false,
         gravity: "top", // `top` or `bottom`
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-        background: "linear-gradient(to right, #008f00, #007400)",
+            background: "linear-gradient(to right, #008f00, #007400)",
         },
         offset: {
             x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
@@ -96,27 +104,32 @@ function agregarAlCarrito(e) {
         onClick: function(){} // Callback after click
     }).showToast();
 
-    const idBoton = e.currentTarget.id;
-    const geneticaAgregada = geneticas.find(genetica => genetica.id === idBoton);
-
-    if(geneticasEnCarrito.some(genetica => genetica.id === idBoton)) {
-        const index = geneticasEnCarrito.findIndex(genetica => genetica.id === idBoton);
-        geneticasEnCarrito[index].cantidad++;
-    } else {
-        geneticaAgregada.cantidad = 1;
-        geneticasEnCarrito.push(geneticaAgregada);
-    }
-
-    actualizarNumero()
+    actualizarNumero();
 
     localStorage.setItem("geneticas-en-carrito", JSON.stringify(geneticasEnCarrito));
 }
+
 
 function actualizarNumero() {
     let nuevoNumero = geneticasEnCarrito.reduce((acc, genetica) => acc + genetica.cantidad, 0);
     numero.innerText = nuevoNumero;
 }
 
+/*Boton Frase*/
+const botonFrase = document.querySelector('.boton-frase');
+const textoFrase = document.querySelector('.texto-frase')
+botonFrase.addEventListener('click', getData)
+
+async function getData(){
+    try{
+        const data = await fetch('https://api.chucknorris.io/jokes/random');
+        const json = await data.json();
+        textoFrase.textContent = json.value;
+    }
+    catch(e){
+        console.error(e);
+    }
+}
 
 
 /* JS Scraps
